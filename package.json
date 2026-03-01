@@ -2,7 +2,6 @@
   "name": "namaste_react",
   "version": "1.0.0",
   "description": "This is Namaste React by Shivaraj Mothe",
-  "main": "App.js",
   "scripts": {
     "test": "jest"
   },
@@ -15,5 +14,13 @@
   "bugs": {
     "url": "https://github.com/ShivaRajmothe/Namaste_React_Codings/issues"
   },
-  "homepage": "https://github.com/ShivaRajmothe/Namaste_React_Codings#readme"
+  "homepage": "https://github.com/ShivaRajmothe/Namaste_React_Codings#readme",
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "broweserlist":["last 2 versions"]
 }
