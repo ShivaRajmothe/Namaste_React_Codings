@@ -1,0 +1,19 @@
+{
+  "name": "namaste_react",
+  "version": "1.0.0",
+  "description": "This is Namaste React by Shivaraj Mothe",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShivaRajmothe/Namaste_React_Codings.git"
+  },
+  "author": "Shivaraj Mothe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShivaRajmothe/Namaste_React_Codings/issues"
+  },
+  "homepage": "https://github.com/ShivaRajmothe/Namaste_React_Codings#readme"
+}
