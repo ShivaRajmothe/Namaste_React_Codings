@@ -31,7 +31,7 @@
     flex-direction: column;
     gap: 20px;
 }
-.search-container {
+.container {
     display: flex;
     gap: 10px;
     padding-top: 50px;
@@ -58,4 +58,8 @@
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
+}
+.filter-button
+{
+    cursor: pointer;
 }
