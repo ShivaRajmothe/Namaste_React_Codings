@@ -34,7 +34,7 @@
 .container {
     display: flex;
     gap: 10px;
-    padding-top: 50px;
+    padding-top: 20px;
     align-items: center;
 }
 .resturant-card {
@@ -62,4 +62,20 @@
 .filter-button
 {
     cursor: pointer;
+}
+.shimmer-container
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+.shimmer-card
+{
+    width: 200px;
+    height: 400px;
+    margin: 20px;
+    background: #f0f0f0;
+}
+
+.search-button {
+    padding-right: 20px;
 }
