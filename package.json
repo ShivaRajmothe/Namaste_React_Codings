@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "This is Namaste React by Shivaraj Mothe",
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html",
-    "test": "jest"
-  },
+ "dev": "vite",
+ "build": "vite build",
+ "preview": "vite preview"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ShivaRajmothe/Namaste_React_Codings.git"
@@ -17,15 +17,16 @@
     "url": "https://github.com/ShivaRajmothe/Namaste_React_Codings/issues"
   },
   "homepage": "https://github.com/ShivaRajmothe/Namaste_React_Codings#readme",
-  "devDependencies": {
-    "parcel": "^2.16.4"
-  },
   "dependencies": {
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "react-router-dom": "^6.30.3"
+    "react-router-dom": "^6.30.3",
+    "vite": "^6.4.1"
   },
   "broweserlist": [
     "last 2 versions"
-  ]
+  ],
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.7.0"
+  }
 }
