@@ -7,7 +7,7 @@ const stylecard = {
 }
 
 const ResturantCard =(resData) =>{
-    const { name, cuisine, rating, servings, image } = resData;
+    const { name, cuisine, rating, cookTimeMinutes, image } = resData;
     return(
 
         <div className="resturant-card" style={stylecard}>
@@ -16,7 +16,7 @@ const ResturantCard =(resData) =>{
   <h3>{name}</h3>
   <h4>{cuisine}</h4>
   <h4>Rating: {rating} stars</h4>
-  <h4>{servings}</h4>
+  <h4>{cookTimeMinutes} minutes</h4>
         </div>
     )
 }
