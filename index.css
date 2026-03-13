@@ -63,19 +63,21 @@
 {
     cursor: pointer;
 }
-.shimmer-container
+.search-button {
+    padding-right: 20px;
+}
+.recipes_links
 {
+    text-underline-offset: off;
+}
+.restaurant-list {
     display: flex;
     flex-wrap: wrap;
 }
-.shimmer-card
-{
+
+.shimmer-card {
     width: 200px;
     height: 400px;
+    background: lightgrey;
     margin: 20px;
-    background: #f0f0f0;
-}
-
-.search-button {
-    padding-right: 20px;
 }
