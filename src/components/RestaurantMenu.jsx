@@ -55,12 +55,13 @@ const RestaurantMenu = () => {
 
   // Pick only the fields you need
   const minimalRecipes = recipesArray.map(
-    ({ name, cuisine, rating, cookTimeMinutes, ingredients }) => ({
+    ({ name, cuisine, rating, cookTimeMinutes, ingredients, image }) => ({
       name,
       cuisine,
       rating,
       cookTimeMinutes,
       ingredients,
+      image,
     })
   );
 
@@ -78,7 +79,7 @@ const RestaurantMenu = () => {
     <div style={{ padding: "1rem" }}>
       <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
         {minimalRecipes.map(
-          ({ name, cuisine, rating, cookTimeMinutes, ingredients }, idx) => (
+          ({ name, cuisine, rating, cookTimeMinutes, ingredients, image }, idx) => (
             <li
               key={`${name}-${idx}`}
               style={{
@@ -89,7 +90,19 @@ const RestaurantMenu = () => {
                 background: "#fff",
               }}
             >
+             
               <h3 style={{ margin: "0 0 6px" }}>{name}</h3>
+              
+              {
+                <img
+                  src={image}
+                  alt={name}
+                  style={{
+                    width: "200px",
+                    height: "auto",
+                  }}
+                />
+              }
               {cuisine && (
                 <h4 style={{ margin: "0 0 8px", color: "#666" }}>{cuisine}</h4>
               )}
@@ -101,7 +114,7 @@ const RestaurantMenu = () => {
               <p style={{ margin: 0 }}>
                 <span>⭐ Rating: {rating ?? "N/A"}</span> {" · "}
                 <span>⏱️ Cook Time: {cookTimeMinutes ?? "—"} min</span>
-              </p>
+              </p>             
             </li>
           )
         )}

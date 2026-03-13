@@ -10,11 +10,11 @@ const Header = () =>
 {
 
     const[btnName,setBtnName] = useState("Login")
-    console.log("Header rendered")
+    // console.log("Header rendered")
 
     useEffect (()=>
     {
-        console.log("useEffect called")
+        // console.log("useEffect called")
     },[btnName])
     return(
 <div className="header">
