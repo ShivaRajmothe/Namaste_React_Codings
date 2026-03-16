@@ -2,40 +2,43 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
+import useResturantMenu from "../utils/useResturantMenu";
 
 const RestaurantMenu = () => {
   const { id } = useParams();
-  const [resInfo, setResInfo] = useState(null);
-  const [error, setError] = useState("");
+  const { resInfo, error } = useResturantMenu(id);
 
-  useEffect(() => {
-    fetchData();
-  }, [id]);
+  // const { resInfo, error } = useResturantMenu(id);
+  // const [error, setError] = useState("");
 
-  const fetchData = async () => {
-    try {
-      // guard: require an id
-      if (!id) {
-        setError("No recipe id provided in the route.");
-        return;
-      }
+  // useEffect(() => {
+  //   fetchData();
+  // }, [id]);
 
-      setError("");
-      setResInfo(null); // show Shimmer while loading
+  // const fetchData = async () => {
+  //   try {
+  //     // guard: require an id
+  //     if (!id) {
+  //       setError("No recipe id provided in the route.");
+  //       return;
+  //     }
 
-      const url = `https://dummyjson.com/recipes/${id}`;
-      const resp = await fetch(url);
-      if (!resp.ok) {
-        throw new Error(`Request failed: ${resp.status} ${resp.statusText}`);
-      }
-      const json = await resp.json();
-      setResInfo(json);
-      // console.log("Single recipe:", json);
-    } catch (e) {
-      console.error(e);
-      setError(e?.message || "Failed to load recipe.");
-    }
-  };
+  //     setError("");
+  //     setResInfo(null); // show Shimmer while loading
+
+  //     const url = `https://dummyjson.com/recipes/${id}`;
+  //     const resp = await fetch(url);
+  //     if (!resp.ok) {
+  //       throw new Error(`Request failed: ${resp.status} ${resp.statusText}`);
+  //     }
+  //     const json = await resp.json();
+  //     setResInfo(json);
+  //     // console.log("Single recipe:", json);
+  //   } catch (e) {
+  //     console.error(e);
+  //     setError(e?.message || "Failed to load recipe.");
+  //   }
+  // };
 
   // Loading
   if (!error && resInfo === null) return <Shimmer />;

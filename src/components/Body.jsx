@@ -43,8 +43,7 @@ const Body = () => {
               // filter the Restaurant and update the UI.
 
               const filteredRestaurant = listOfResturants.filter((res) => {
-                return res.name
-                  .toLowerCase()
+                return res.name.toLowerCase()
                   .includes(searchInput.toLowerCase());
               });
               setFilterResults(filteredRestaurant);
