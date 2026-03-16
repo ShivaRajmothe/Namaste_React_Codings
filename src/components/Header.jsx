@@ -1,37 +1,51 @@
-import React, { useEffect } from "react";
-import ReactDOM from "react-dom/client";
-import {LOGO_URL} from "../utils/constants";
-const root = ReactDOM.createRoot(document.getElementById("root"));
-import { useState } from "react";
+
+import React,{ useState } from "react";
 import { Link } from "react-router-dom";
+import useOnline from "../utils/useOnline";
+import {LOGO_URL} from "../utils/constants";
+import { FaCheckCircle } from 'react-icons/fa';
 
 
-const Header = () =>
-{
+const Title = () => (
+  <a href="/">
+    <img className="h-28 p-2" src={LOGO_URL} alt="logo"/>
+  </a>
+);
 
-    const[btnName,setBtnName] = useState("Login")
-    // console.log("Header rendered")
+const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    useEffect (()=>
-    {
-        // console.log("useEffect called")
-    },[btnName])
-    return(
-<div className="header">
-    <div className="logo-container">
-        <img className="logo" src={LOGO_URL} alt="logo"/>
-    </div>
-    <div>
-        <ul className="nav-items">
-            <li> <Link to="/" > Home </Link></li>
-            <li> <Link to="/about"> AboutUs</Link></li>
-            <li><Link to="/Contact"> Contact</Link></li>
-            <li>Cart</li>
-            <button onClick={() => btnName === "Login" ? setBtnName("Logout"): setBtnName("Login") }>{btnName}</button>
+  const isOnline = useOnline();
+
+  return (
+    <div className="flex justify-between bg-pink-50 shadow-lg sm:bg-blue-50 md:bg-yellow-50">
+      <Title />
+      <div className="flex items-center">
+        <ul className="flex py-10">
+          <li className="px-2">
+            <Link to="/">Home</Link>
+          </li>
+
+          <Link to="/about">
+            <li className="px-2">About</li>
+          </Link>
+          <Link to="/contact">
+            <li className="px-2">Contact</li>
+          </Link>
+          <li className="px-2">Cart</li>
+          <Link to="/Instamart">
+            <li className="px-2">Instamart</li>
+          </Link>
         </ul>
+      </div>
+      <h1>{isOnline ? "✅" : "🔴"}</h1>
+      {isLoggedIn ? (
+        <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+      ) : (
+        <button onClick={() => setIsLoggedIn(true)}>Login</button>
+      )}
     </div>
-    </div>
-    )
-}
+  );
+};
 
 export default Header;
