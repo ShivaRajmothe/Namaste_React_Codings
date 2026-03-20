@@ -41,7 +41,7 @@ const appRouter = createBrowserRouter([
         element:<Suspense>  <Instamart /></Suspense>,  // on demand will load this component
       },  
       {
-        path: "/recipes/:id",
+        path: "/restaurants/:id",
         element: <RestaurantMenu />,
       },
       {

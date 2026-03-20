@@ -19,11 +19,14 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch("https://dummyjson.com/recipes");
+    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.38430&lng=78.45830&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
     const json = await data.json();
 
-    setListOfResturants(json.recipes);
-    setFilterResults(json.recipes);
+    // Extract restaurants from Swiggy API response
+    const restaurants = json?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+    setListOfResturants(restaurants);
+    setFilterResults(restaurants);
+    console.log(restaurants);
   };
 
 
@@ -52,7 +55,7 @@ return(
               // filter the Restaurant and update the UI.
 
               const filteredRestaurant = listOfResturants.filter((res) => {
-                return res.name
+                return res.info.name
                   .toLowerCase()
                   .includes(searchInput.toLowerCase());
               });
@@ -67,7 +70,7 @@ return(
           className="px-4 py-2 bg-gray-100 rounded-lg cursor-pointer hover:bg-gray-300"
           onClick={() => {
             const restaurantsfilterData = listOfResturants.filter(
-              (res) => res.rating > 4.8,
+              (res) => parseFloat(res.info.avgRating) > 4.5,
             );
             setFilterResults(restaurantsfilterData);
             console.log("filter" + restaurantsfilterData);
@@ -80,9 +83,9 @@ return(
       </div>
       <div className="flex flex-wrap">
         {filterResults.map((res) => {
-          return <Link  className="recipes_links"to={"/recipes/" + res.id} 
-          key={res.id}>
-          <ResturantCard  {...res} /></Link>;
+          return <Link  className="recipes_links"to={"/restaurants/" + res.info.id} 
+          key={res.info.id}>
+          <ResturantCard  {...res.info} /></Link>;
         })}
       </div>
     </div>
