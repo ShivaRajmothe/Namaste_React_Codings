@@ -1,49 +1,84 @@
-
-import React,{ useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
-import {LOGO_URL} from "../utils/constants";
-import { FaCheckCircle } from 'react-icons/fa';
-
-
-const Title = () => (
-  <a href="/">
-    <img className="h-28 p-2" src={LOGO_URL} alt="logo"/>
-  </a>
-);
+import { LOGO_URL } from "../utils/constants";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const isOnline = useOnline();
 
   return (
-    <div className="flex justify-between bg-pink-50 shadow-lg sm:bg-blue-50 md:bg-yellow-50">
-      <Title />
-      <div className="flex items-center">
-        <ul className="flex py-10">
-          <li className="px-2">
-            <Link to="/">Home</Link>
+    <div className="sticky top-0 z-50 bg-white shadow-md">
+      <div className="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
+
+        {/* LOGO */}
+        <Link to="/">
+          <img
+            className="h-16 object-contain hover:scale-105 transition duration-300"
+            src={LOGO_URL}
+            alt="logo"
+          />
+        </Link>
+
+        {/* NAV ITEMS */}
+        <ul className="flex items-center gap-6 text-gray-700 font-medium">
+          <li>
+            <Link className="hover:text-blue-600 transition" to="/">
+              Home
+            </Link>
           </li>
 
-          <Link to="/about">
-            <li className="px-2">About</li>
-          </Link>
-          <Link to="/contact">
-            <li className="px-2">Contact</li>
-          </Link>
-          <li className="px-2">Cart</li>
-          <Link to="/Instamart">
-            <li className="px-2">Instamart</li>
-          </Link>
+          <li>
+            <Link className="hover:text-blue-600 transition" to="/about">
+              About
+            </Link>
+          </li>
+
+          <li>
+            <Link className="hover:text-blue-600 transition" to="/contact">
+              Contact
+            </Link>
+          </li>
+
+          <li className="hover:text-blue-600 cursor-pointer transition" to="/cart">
+            Cart 🛒
+          </li>
+
+          <li>
+            <Link className="hover:text-blue-600 transition" to="/Instamart">
+              Instamart
+            </Link>
+          </li>
         </ul>
+
+        {/* RIGHT SECTION */}
+        <div className="flex items-center gap-4">
+
+          {/* ONLINE STATUS */}
+          <div className="flex items-center gap-1 text-sm font-medium">
+            <span
+              className={`w-2.5 h-2.5 rounded-full ${
+                isOnline ? "bg-green-500" : "bg-red-500"
+              }`}
+            ></span>
+            <span className={isOnline ? "text-green-600" : "text-red-600"}>
+              {isOnline ? "Online" : "Offline"}
+            </span>
+          </div>
+
+          {/* LOGIN BUTTON */}
+          <button
+            onClick={() => setIsLoggedIn(!isLoggedIn)}
+            className={`w-[100px] px-4 py-2 rounded-lg text-white transition duration-300 ${
+              isLoggedIn
+                ? "bg-red-500 hover:bg-red-600"
+                : "bg-blue-500 hover:bg-blue-600"
+            }`}
+          >
+            {isLoggedIn ? "Logout" : "Login"}
+          </button>
+        </div>
       </div>
-      <h1>{isOnline ? "✅" : "🔴"}</h1>
-      {isLoggedIn ? (
-        <button onClick={() => setIsLoggedIn(false)}>Logout</button>
-      ) : (
-        <button onClick={() => setIsLoggedIn(true)}>Login</button>
-      )}
     </div>
   );
 };
