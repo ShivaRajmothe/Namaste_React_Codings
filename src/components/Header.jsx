@@ -3,6 +3,15 @@ import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
 import { LOGO_URL } from "../utils/constants";
 
+const Logo = () => (
+  <a href="/">
+          <img
+            className="h-16 object-contain hover:scale-105 transition duration-300"
+            src={LOGO_URL}
+            alt="logo"
+          />
+        </a>
+)
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isOnline = useOnline();
@@ -12,36 +21,26 @@ const Header = () => {
       <div className="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
 
         {/* LOGO */}
-        <Link to="/">
-          <img
-            className="h-16 object-contain hover:scale-105 transition duration-300"
-            src={LOGO_URL}
-            alt="logo"
-          />
-        </Link>
+        <Logo />
 
         {/* NAV ITEMS */}
         <ul className="flex items-center gap-6 text-gray-700 font-medium">
           <li>
-            <Link className="hover:text-blue-600 transition" to="/">
-              Home
-            </Link>
-          </li>
-
-          <li>
             <Link className="hover:text-blue-600 transition" to="/about">
-              About
+              Offers
             </Link>
           </li>
 
           <li>
             <Link className="hover:text-blue-600 transition" to="/contact">
-              Contact
+              Help
             </Link>
           </li>
 
-          <li className="hover:text-blue-600 cursor-pointer transition" to="/cart">
-            Cart 🛒
+          <li>
+            <Link className="hover:text-blue-600 cursor-pointer transition" to="/cart">
+              Cart 🛒
+            </Link>
           </li>
 
           <li>
@@ -75,7 +74,7 @@ const Header = () => {
                 : "bg-blue-500 hover:bg-blue-600"
             }`}
           >
-            {isLoggedIn ? "Logout" : "Login"}
+            {isLoggedIn ? "Sign Out" : "Sign In"}
           </button>
         </div>
       </div>

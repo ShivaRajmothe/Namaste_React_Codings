@@ -19,6 +19,19 @@ const ResturantCard =({name, cuisines = [], avgRating, cloudinaryImageId, costFo
   <h4 className="text-gray-600 text-sm">{sla?.slaString}</h4>
         </div>
     )
-}
+};
 
+export const withPromotedLabel = (ResturantCard) => {
+    return (props) => {
+        return (        
+            <div>
+                <div className="pl-[20px] ">                
+        <label className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded absolute m-2">{props.header}</label>
+                    </div>
+                <ResturantCard {...props} />        
+            </div>
+        )
+    }       
+
+};
 export default ResturantCard;

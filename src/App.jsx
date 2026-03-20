@@ -10,6 +10,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Shimmer from "./components/Shimmer";
 import Instamart from "./components/Instamart";
 import ProductMenu from "./components/ProductMenu";
+import Cart from "./components/Cart";
 const AppLayout = () => {
   return (
     <div className="app">
@@ -35,6 +36,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
       {
         path: "/instamart",

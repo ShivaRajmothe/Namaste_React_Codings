@@ -7,12 +7,15 @@ import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import useOnline from '../utils/useOnline';
 
-import ResturantCard from "./ResturantCard";
+import ResturantCard,{withPromotedLabel} from "./ResturantCard";
 
 const Body = () => {
   const [searchInput, setSearchInput] = useState("");
   const [filterResults, setFilterResults] = useState([]);
   const [listOfResturants, setListOfResturants] = useState([]);
+  const PromotedResturantCard = withPromotedLabel(ResturantCard);
+
+  console.log("render" + PromotedResturantCard);
 
   useEffect(() => {
     fetchData();
@@ -65,7 +68,7 @@ return(
             Search
           </button>
         </div>
-        <div className="m-4 p-4 flex items-center" >
+        <div className="m-4 p-4 flex items-center gap-4" >
         <button
           className="px-4 py-2 bg-gray-100 rounded-lg cursor-pointer hover:bg-gray-300"
           onClick={() => {
@@ -82,11 +85,20 @@ return(
        
       </div>
       <div className="flex flex-wrap">
-        {filterResults.map((res) => {
-          return <Link  className="recipes_links"to={"/restaurants/" + res.info.id} 
-          key={res.info.id}>
-          <ResturantCard  {...res.info} /></Link>;
-        })}
+       {filterResults.map((res) => {
+  return (
+    <Link className="recipes_links" to={"/restaurants/" + res.info.id} key={res.info.id}>
+      {res.info?.aggregatedDiscountInfoV3?.header ? (
+        <PromotedResturantCard 
+          {...res.info} 
+          header={res.info.aggregatedDiscountInfoV3.header}
+        />
+      ) : (
+        <ResturantCard {...res.info} />
+      )}
+    </Link>
+  );
+})}
       </div>
     </div>
   );
