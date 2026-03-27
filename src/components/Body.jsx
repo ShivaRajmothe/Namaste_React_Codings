@@ -2,11 +2,12 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import restaurants from "../utils/mockData";
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import useOnline from '../utils/useOnline';
 
+import UserContext from "../utils/UserContext";
 import ResturantCard, {withPromotedLabel} from "./ResturantCard";
 
 const Body = () => {
@@ -32,6 +33,9 @@ const Body = () => {
 
 
 const onlineStatus = useOnline();
+
+const {loggedInUser ,setUserName} = useContext(UserContext);
+
 
 if(onlineStatus === false)
 return(
@@ -79,6 +83,14 @@ return(
         >
           Top Rated Resturant
         </button>
+        </div>
+
+        <div className="m-4 p-4 flex items-center" >
+          <label>UserName: </label>
+        <input className="border border-black" 
+        value={loggedInUser}
+         onChange={(e) => setUserName(e.target.value)}
+        />
         </div>
        
       </div>

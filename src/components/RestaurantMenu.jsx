@@ -118,17 +118,20 @@
 
 // export default RestaurantMenu;
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useContext } from "react";
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import UserContext from "../utils/UserContext";
 
 
 const RestaurantMenu = () => {
   const { id } = useParams();
   const [resInfo, setResInfo] = useState(null);
   const [error, setError] = useState("");
+  const {loggedInUser} = useContext(UserContext);
+
 
   useEffect(() => {
     fetchData();
@@ -207,6 +210,9 @@ const RestaurantMenu = () => {
   return (
     <div className="max-w-4xl mx-auto p-4">
       {/* MAIN LAYOUT */}
+      <ul className="flex py-10 px-10">
+<li className="px-2 font-bold">{loggedInUser}</li>
+</ul>
         <Link to="/" className="text-blue-600 underline">&larr; Back to Home</Link>
       <div className="flex gap-6 items-start border border-gray-200 rounded-lg p-4 bg-white shadow-sm">
         
