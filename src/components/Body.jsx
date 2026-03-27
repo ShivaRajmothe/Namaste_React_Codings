@@ -7,17 +7,21 @@ import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import useOnline from '../utils/useOnline';
 
-import ResturantCard from "./ResturantCard";
+import ResturantCard, {withPromotedLabel} from "./ResturantCard";
 
 const Body = () => {
   const [searchInput, setSearchInput] = useState("");
   const [filterResults, setFilterResults] = useState([]);
   const [listOfResturants, setListOfResturants] = useState([]);
 
+  const ResturantWithPromoted = withPromotedLabel(ResturantCard);
+
   useEffect(() => {
     fetchData();
   }, []);
 
+
+  console.log("list of resturants", listOfResturants)
   const fetchData = async () => {
     const data = await fetch("https://dummyjson.com/recipes");
     const json = await data.json();
@@ -82,7 +86,10 @@ return(
         {filterResults.map((res) => {
           return <Link  className="recipes_links"to={"/recipes/" + res.id} 
           key={res.id}>
-          <ResturantCard  {...res} /></Link>;
+            {
+              res.difficulty === 'Easy' ? <ResturantWithPromoted {...res}/> :<ResturantCard  {...res} />
+            }
+          </Link>;
         })}
       </div>
     </div>

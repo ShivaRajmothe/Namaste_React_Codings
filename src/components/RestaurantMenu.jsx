@@ -122,6 +122,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+
 
 const RestaurantMenu = () => {
   const { id } = useParams();
@@ -177,6 +179,31 @@ const RestaurantMenu = () => {
     image,
   } = resInfo;
 
+
+  const renderStars = (rating) => {
+      const totalStars = 5;
+    
+      return Array.from({ length: totalStars }, (_, index) => {
+        const starValue = index + 1;
+        const fillPercentage = Math.min(Math.max(rating - index, 0), 1) * 100;
+    
+        return (
+          <div key={index} className="relative w-5 h-5">
+            {/* Empty star */}
+            <AiOutlineStar className="absolute top-0 left-0 text-gray-400 w-5 h-5" />
+    
+            {/* Filled star (partial or full) */}
+            <div
+              className="absolute top-0 left-0 overflow-hidden"
+              style={{ width: `${fillPercentage}%` }}
+            >
+              <AiFillStar className="text-yellow-500 w-5 h-5" />
+            </div>
+          </div>
+        );
+      });
+    };
+
   return (
     <div className="max-w-4xl mx-auto p-4">
       {/* MAIN LAYOUT */}
@@ -206,10 +233,12 @@ const RestaurantMenu = () => {
             </p>
           )}
 
-          <p className="text-sm text-gray-700">
-            ⭐ Rating: {rating ?? "N/A"} <br />
-            ⏱️ Cook Time: {cookTimeMinutes ?? "—"} min
-          </p>
+         <h4 className="flex items-center gap-1">
+  {rating}
+  <span className="flex">
+    {renderStars(rating)}
+  </span>
+</h4>
           <button className="mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
             Add to cart
           </button>
