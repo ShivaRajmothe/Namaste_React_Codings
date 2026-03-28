@@ -107,6 +107,8 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import { CDN_URL } from "../utils/constants";
+import { FiStar } from "react-icons/fi";
+
 
 const API =
   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.38430&lng=78.45830&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
@@ -175,7 +177,7 @@ const RestaurantMenu = () => {
     cuisines,
     avgRating,
     cloudinaryImageId,
-    costForTwo,
+      sla,
     areaName,
   } = resInfo;
 
@@ -210,10 +212,13 @@ const RestaurantMenu = () => {
             <p className="text-gray-600 mb-2">📍 {areaName}</p>
           )}
 
-          <p className="text-gray-700">
-            ⭐ Rating: {avgRating ?? "N/A"} <br />
-            {costForTwo}
-          </p>
+         <h4 className="flex items-center gap-2 text-sm px-2 py-1 text-gray-700">
+  <span className="flex items-center gap-1 bg-green-500 text-white px-2 py-[2px] rounded-md text-xs">
+    <FiStar className="text-white" />
+    {avgRating}
+  </span>
+  <span>- {sla?.slaString}</span>
+</h4>
 
           <button className="mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
             Add to cart

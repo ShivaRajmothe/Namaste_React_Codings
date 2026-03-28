@@ -69,3 +69,36 @@
 // };
 
 // export default useRestaurantMenu;
+
+
+import { useEffect, useState } from "react";
+import { MENU_API } from "../utils/constants";
+
+const useRestaurantMenu = (id) => {
+  const [resInfo, setResInfo] = useState(null);
+  console.log("useRestaurantMenu called with resId:", id);
+
+  useEffect(() => {
+    fetchData();
+  }, [id]);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(MENU_API + id);
+      console.log("API response:", response);
+      
+      if (!response.ok) {
+        throw new Error(`API failed with status ${response.status}`);
+      }
+      
+      const json = await response.json();
+      setResInfo(json.data);
+    } catch (error) {
+      console.error("Failed to fetch restaurant menu:", error);
+    }
+  };
+
+  return resInfo;
+};
+
+export default useRestaurantMenu;
