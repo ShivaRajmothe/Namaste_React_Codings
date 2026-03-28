@@ -2,7 +2,8 @@ import React, { useState, useContext} from "react";
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
 import { LOGO_URL } from "../utils/constants";
-import UserContext from "../utils/UserContext";4
+import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Logo = () => (
   <a href="/">
@@ -16,8 +17,10 @@ const Logo = () => (
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isOnline = useOnline();
-
+const cartItems = useSelector((store) => store.cart.items);
   const { loggedInUser } = useContext(UserContext);
+  console.log("Header is rendering");
+  console.log("Cart items:", cartItems);
 
   return (
     <div className="sticky top-0 z-50 bg-white shadow-md">
@@ -41,8 +44,8 @@ const Header = () => {
           </li>
 
           <li>
-            <Link className="hover:text-blue-600 cursor-pointer transition" to="/cart">
-              Cart 🛒
+            <Link className="hover:text-blue-600 cursor-pointer transition font-bold" to="/cart">
+              Cart 🛒- {cartItems.length} items
             </Link>
           </li>
 

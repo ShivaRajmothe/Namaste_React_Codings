@@ -12,6 +12,8 @@ import Instamart from "./components/Instamart";
 import ProductMenu from "./components/ProductMenu";
 import Cart from "./components/Cart";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 const AppLayout = () => {
 
   const[userName, setUserName] = useState();
@@ -27,13 +29,14 @@ const AppLayout = () => {
   },[])
 
   return (
-
+<Provider store={appStore} >
     <UserContext.Provider  value = {{loggedInUser : userName , setUserName}} >
     <div className="app">
       <Header />
       <Outlet />
     </div>
     </UserContext.Provider>
+    </Provider>
   );
 };
 

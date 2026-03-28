@@ -103,11 +103,13 @@
 
 // export default RestaurantMenu;
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import { useParams, Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import { CDN_URL } from "../utils/constants";
 import { FiStar } from "react-icons/fi";
+import { addItem } from "../utils/cartSlice";
+import { useDispatch } from "react-redux";
 
 
 const API =
@@ -181,6 +183,13 @@ const RestaurantMenu = () => {
     areaName,
   } = resInfo;
 
+const dispatch = useDispatch();
+
+
+  const handleAddItem = () => {
+    //dispatch an action to add item to cart
+dispatch(addItem("pizza"))
+  }
   return (
     <div className="max-w-4xl mx-auto p-4">
       <Link to="/" className="text-blue-600 underline">
@@ -220,7 +229,8 @@ const RestaurantMenu = () => {
   <span>- {sla?.slaString}</span>
 </h4>
 
-          <button className="mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+          <button className="mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          onClick={handleAddItem}>
             Add to cart
           </button>
         </div>

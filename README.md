@@ -53,3 +53,13 @@ parent mount
 
 https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
 
+
+
+# Redux ToolKit
+
+- install @reduxjs/toolkit and react-redux
+- Build store
+- Connect store to the application
+- slice(cartSlice)
+- dispatch(action)
+- Selector 
