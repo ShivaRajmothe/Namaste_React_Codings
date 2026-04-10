@@ -124,6 +124,8 @@ import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import UserContext from "../utils/UserContext";
+import { addItem } from "../utils/cartSlice";
+import { useDispatch } from "react-redux";
 
 
 const RestaurantMenu = () => {
@@ -131,7 +133,13 @@ const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState(null);
   const [error, setError] = useState("");
   const {loggedInUser} = useContext(UserContext);
+  const dispatch = useDispatch();
 
+
+  const handleAddItem = () => {
+    //dispatch an action to add item to cart
+dispatch(addItem("pizza"))
+  }
 
   useEffect(() => {
     fetchData();
@@ -245,7 +253,7 @@ const RestaurantMenu = () => {
     {renderStars(rating)}
   </span>
 </h4>
-          <button className="mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+          <button className="mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" onClick={handleAddItem}>
             Add to cart
           </button>
         </div>

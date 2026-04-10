@@ -11,6 +11,10 @@ import Shimmer from "./components/Shimmer";
 import Instamart from "./components/Instamart";
 import ProductMenu from "./components/ProductMenu";
 import UserContext from "./utils/UserContext";
+import appStore from "./utils/appStore";
+import { Provider } from "react-redux";
+import SearchFilter from "./components/SearchFilter";
+import Accordian from "./components/Accordian";
 const AppLayout = () => {
 
   const[userName, setUserName] = useState();
@@ -23,6 +27,7 @@ const data = {
 setUserName(data.name);
   },[])
   return (
+    <Provider store={appStore}>
     <UserContext.Provider 
     value={{
             loggedInUser: userName,
@@ -30,13 +35,16 @@ setUserName(data.name);
           }}
     >
     <div className="app">
-    {/* <UserContext.Provider  value={{loggedInUser : "Raj"}}> */}
+    <UserContext.Provider  value={{loggedInUser : "Raj"}}>
       <Header />
-      {/* </UserContext.Provider> */}
+      </UserContext.Provider>
 
       <Outlet />
+      {/* <SearchFilter/>
+      <Accordian /> */}
     </div>
     </UserContext.Provider>
+    </Provider>
   );
 };
 
