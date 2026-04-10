@@ -85,13 +85,13 @@ return(
         </button>
         </div>
 
-        <div className="m-4 p-4 flex items-center" >
+        {/* <div className="m-4 p-4 flex items-center" >
           <label>UserName: </label>
         <input className="border border-black" 
         value={loggedInUser}
          onChange={(e) => setUserName(e.target.value)}
         />
-        </div>
+        </div> */}
        
       </div>
       <div className="flex flex-wrap">
