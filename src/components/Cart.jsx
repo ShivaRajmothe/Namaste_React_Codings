@@ -6,7 +6,11 @@ const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
 
   if (cartItems.length === 0) {
-    return <h2 className="p-4">Your cart is empty</h2>;
+    return (
+      <div className="min-h-[200px] flex items-center justify-center text-gray-500">
+        Your cart is empty
+      </div>
+    );
   }
 
   return (
@@ -38,8 +42,18 @@ const Cart = () => {
 
           // Fallback: simple display
           return (
-            <div key={item.id} className="p-4 border rounded">
-              <div className="font-medium">{item.name || item.title || "Item"}</div>
+            <div key={item.id} className="p-4 border rounded bg-white shadow-sm flex items-center gap-4">
+              <div className="w-20 h-20 bg-gray-100 rounded overflow-hidden flex items-center justify-center">
+                {item.image ? (
+                  <img src={item.image} alt={item.title || item.name} className="w-full h-full object-cover" />
+                ) : (
+                  <span className="text-sm text-gray-400">No image</span>
+                )}
+              </div>
+              <div>
+                <div className="font-medium text-gray-800">{item.name || item.title || "Item"}</div>
+                <div className="text-sm text-gray-600">{item.description || item.cuisines?.join(", ")}</div>
+              </div>
             </div>
           );
         })}
