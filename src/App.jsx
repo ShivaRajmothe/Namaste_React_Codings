@@ -1,41 +1,50 @@
-import React, { lazy, Suspense, useState  , useEffect} from "react";
+import React, { lazy, Suspense, useEffect, useState} from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import Cart from "./components/Cart";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Shimmer from "./components/Shimmer";
 import Instamart from "./components/Instamart";
 import ProductMenu from "./components/ProductMenu";
-import Cart from "./components/Cart";
 import UserContext from "./utils/UserContext";
-import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
+import { Provider } from "react-redux";
+// import SearchFilter from "./components/SearchFilter";
+// import Accordian from "./components/Accordian";
 const AppLayout = () => {
 
   const[userName, setUserName] = useState();
 
-
-  useEffect(() =>
+  useEffect(()=>
   {
-
-    const data = {
-      name : "shivaraj",
-    };
-    setUserName(data.name);
+const data = {
+  name : 'Shivaraj',
+};
+setUserName(data.name);
   },[])
-
   return (
-<Provider store={appStore} >
-    <UserContext.Provider  value = {{loggedInUser : userName , setUserName}} >
+    <Provider store={appStore}>
+    {/* <UserContext.Provider 
+    value={{
+            loggedInUser: userName,
+            setUserName,
+          }}
+    > */}
     <div className="app">
+    {/* <UserContext.Provider  value={{loggedInUser : "Raj"}}> */}
       <Header />
+      {/* </UserContext.Provider> */}
+
       <Outlet />
+      {/* <SearchFilter/>
+      <Accordian /> */}
     </div>
-    </UserContext.Provider>
+    {/* </UserContext.Provider> */}
     </Provider>
   );
 };
@@ -54,12 +63,12 @@ const appRouter = createBrowserRouter([
         element: <About />,
       },
       {
-        path: "/contact",
-        element: <Contact />,
-      },
-      {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
       {
         path: "/instamart",

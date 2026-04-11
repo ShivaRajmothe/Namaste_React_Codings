@@ -110,6 +110,7 @@ import { CDN_URL } from "../utils/constants";
 import { FiStar } from "react-icons/fi";
 import { addItem } from "../utils/cartSlice";
 import { useDispatch } from "react-redux";
+import MenuDetails from "./MenuDetails";
 
 
 const API =
@@ -190,53 +191,71 @@ const dispatch = useDispatch();
     //dispatch an action to add item to cart
 dispatch(addItem("pizza"))
   }
-  return (
-    <div className="max-w-4xl mx-auto p-4">
-      <Link to="/" className="text-blue-600 underline">
-        &larr; Back to Home
-      </Link>
+//   return (
+//     <div className="max-w-4xl mx-auto p-4">
+//       <Link to="/" className="text-blue-600 underline">
+//         &larr; Back to Home
+//       </Link>
 
-      <div className="flex gap-6 items-start border rounded-lg p-4 bg-white shadow-sm">
+//       <div className="flex gap-6 items-start border rounded-lg p-4 bg-white shadow-sm">
         
-        {/* IMAGE */}
-        {cloudinaryImageId && (
-          <img
-            src={CDN_URL + cloudinaryImageId}
-            alt={name}
-            className="w-[300px] h-[300px] object-cover rounded-lg"
-          />
-        )}
+//         {/* IMAGE */}
+//         {cloudinaryImageId && (
+//           <img
+//             src={CDN_URL + cloudinaryImageId}
+//             alt={name}
+//             className="w-[300px] h-[300px] object-cover rounded-lg"
+//           />
+//         )}
 
-        {/* CONTENT */}
-        <div className="flex-1">
-          <h2 className="text-2xl font-semibold mb-2">{name}</h2>
+//         {/* CONTENT */}
+//         <div className="flex-1">
+//           <h2 className="text-2xl font-semibold mb-2">{name}</h2>
 
-          {cuisines?.length > 0 && (
-            <p className="text-gray-600 mb-2">
-              {cuisines.join(", ")}
-            </p>
-          )}
+//           {cuisines?.length > 0 && (
+//             <p className="text-gray-600 mb-2">
+//               {cuisines.join(", ")}
+//             </p>
+//           )}
 
-          {areaName && (
-            <p className="text-gray-600 mb-2">📍 {areaName}</p>
-          )}
+//           {areaName && (
+//             <p className="text-gray-600 mb-2">📍 {areaName}</p>
+//           )}
 
-         <h4 className="flex items-center gap-2 text-sm px-2 py-1 text-gray-700">
-  <span className="flex items-center gap-1 bg-green-500 text-white px-2 py-[2px] rounded-md text-xs">
-    <FiStar className="text-white" />
-    {avgRating}
-  </span>
-  <span>- {sla?.slaString}</span>
-</h4>
+//          <h4 className="flex items-center gap-2 text-sm px-2 py-1 text-gray-700">
+//   <span className="flex items-center gap-1 bg-green-500 text-white px-2 py-[2px] rounded-md text-xs">
+//     <FiStar className="text-white" />
+//     {avgRating}
+//   </span>
+//   <span>- {sla?.slaString}</span>
+// </h4>
 
-          <button className="mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-          onClick={handleAddItem}>
-            Add to cart
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+//           <button className="mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+//           onClick={handleAddItem}>
+//             Add to cart
+//           </button>
+//         </div>
+//       </div>
+//     </div>
+//   );
+
+return (
+  <div className="max-w-4xl mx-auto p-4">
+    <Link to="/" className="text-blue-600 underline">
+      &larr; Back to Home
+    </Link>
+
+    <MenuDetails
+      name={name}
+      cuisines={cuisines}
+      avgRating={avgRating}
+      cloudinaryImageId={cloudinaryImageId}
+      sla={sla}
+      areaName={areaName}
+      cartItem={resInfo}
+    />
+  </div>
+);
 };
 
 export default RestaurantMenu;
